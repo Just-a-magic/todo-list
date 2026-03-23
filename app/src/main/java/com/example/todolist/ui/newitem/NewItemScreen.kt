@@ -2,13 +2,11 @@ package com.example.todolist.ui.newitem
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.todolist.ui.newitem.NewItemViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,6 +30,8 @@ fun NewItemScreen(
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+
+    val titleIsValid = title.isNotBlank()
 
     Scaffold(
         topBar = {
@@ -46,9 +45,22 @@ fun NewItemScreen(
                             contentDescription = "Back"
                         )
                     }
+                },
+
+                actions = {
+                    IconButton(
+                        onClick = {
+                            viewModel.add(title, description)
+                            onBack()
+                        },
+                        enabled = titleIsValid
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Save"
+                        )
+                    }
                 }
-
-
             )
         }
     ) { padding ->
@@ -70,15 +82,6 @@ fun NewItemScreen(
                 onValueChange = { description = it },
                 label = { Text("Description") }
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(onClick = {
-                viewModel.add(title, description)
-                onBack()
-            }) {
-                Text("Save")
-            }
         }
     }
 }
