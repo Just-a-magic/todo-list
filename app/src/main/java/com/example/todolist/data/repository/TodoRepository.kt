@@ -12,4 +12,6 @@ class TodoRepository(private val dao: TodoDao) {
     suspend fun delete(item: TodoItem) = dao.delete(item)
 
     suspend fun update(item: TodoItem) = dao.update(item)
+
+    suspend fun getById(id: Int) = dao.getById(id)
 }

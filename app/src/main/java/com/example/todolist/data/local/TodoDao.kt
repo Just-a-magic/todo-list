@@ -14,7 +14,10 @@ interface TodoDao {
     @Query("SELECT * FROM todo_items ORDER BY createdAt DESC")
     fun getAll(): Flow<List<TodoItem>>
 
-    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
+    @Query("SELECT * FROM todo_items WHERE id = :id LIMIT 1")
+    suspend fun getById(id: Int): TodoItem?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: TodoItem)
 
     @Delete

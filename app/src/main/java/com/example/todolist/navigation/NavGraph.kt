@@ -2,13 +2,15 @@ package com.example.todolist.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.todolist.data.local.AppDatabase
 import com.example.todolist.data.repository.TodoRepository
+import com.example.todolist.ui.edititem.EditItemScreen
+import com.example.todolist.ui.edititem.EditItemViewModel
 import com.example.todolist.ui.home.HomeScreen
 import com.example.todolist.ui.home.HomeViewModel
 import com.example.todolist.ui.newitem.NewItemScreen
@@ -27,7 +29,10 @@ fun NavGraph(database: AppDatabase) {
 
             HomeScreen(
                 viewModel = vm,
-                onAddClick = { navController.navigate("new") }
+                onAddClick = { navController.navigate("new") },
+                onEditClick = { id ->
+                    navController.navigate("edit/$id")
+                }
             )
         }
 
@@ -36,6 +41,21 @@ fun NavGraph(database: AppDatabase) {
 
             NewItemScreen(
                 viewModel = vm,
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(
+            route = "edit/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.IntType })
+        ) { backStackEntry ->
+
+            val id = backStackEntry.arguments?.getInt("id") ?: return@composable
+            val vm = remember { EditItemViewModel(repository) }
+
+            EditItemScreen(
+                viewModel = vm,
+                itemId = id,
                 onBack = { navController.popBackStack() }
             )
         }
