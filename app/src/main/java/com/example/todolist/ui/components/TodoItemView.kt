@@ -11,6 +11,9 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.todolist.data.local.TodoItem
 
@@ -39,8 +42,19 @@ fun TodoItemView(
         Spacer(modifier = Modifier.width(8.dp))
 
         Column {
-            Text(text = item.title)
-            Text(text = item.description)
+            val textDecoration = if (item.isDone) TextDecoration.LineThrough else TextDecoration.None
+            val textColor = if (item.isDone) Color.Gray else Color.Unspecified
+
+            Text(
+                text = item.title,
+                style = TextStyle(textDecoration = textDecoration),
+                color = textColor
+            )
+            Text(
+                text = item.description,
+                style = TextStyle(textDecoration = textDecoration),
+                color = textColor
+            )
         }
     }
 }
