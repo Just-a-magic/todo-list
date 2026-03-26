@@ -15,6 +15,7 @@ import com.example.todolist.ui.home.HomeScreen
 import com.example.todolist.ui.home.HomeViewModel
 import com.example.todolist.ui.newitem.NewItemScreen
 import com.example.todolist.ui.newitem.NewItemViewModel
+import com.example.todolist.ui.settings.SettingsScreen
 
 @Composable
 fun NavGraph(database: AppDatabase) {
@@ -32,7 +33,15 @@ fun NavGraph(database: AppDatabase) {
                 onAddClick = { navController.navigate("new") },
                 onEditClick = { id ->
                     navController.navigate("edit/$id")
+                },
+                onSettingsClick = {
+                    navController.navigate("settings")
                 }
+            )
+        }
+        composable("settings") {
+            SettingsScreen(
+                onBack = {navController.popBackStack()}
             )
         }
 
