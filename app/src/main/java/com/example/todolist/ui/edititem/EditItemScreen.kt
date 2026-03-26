@@ -56,17 +56,25 @@ fun EditItemScreen(
                 title = { Text("Edit Task") },
 
                 navigationIcon = {
+                    // back
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, null)
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
 
                 actions = {
+                    // save
                     IconButton(onClick = {
                         viewModel.update(title, description)
                         onBack()
                     }) {
-                        Icon(Icons.Default.Check, null)
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Save"
+                        )
                     }
                 }
             )

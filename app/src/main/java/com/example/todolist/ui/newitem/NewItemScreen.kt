@@ -42,6 +42,7 @@ fun NewItemScreen(
                 title = { Text("Create new task") },
 
                 navigationIcon = {
+                    // back
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.Default.ArrowBackIosNew,
@@ -51,6 +52,7 @@ fun NewItemScreen(
                 },
 
                 actions = {
+                    // create
                     IconButton(
                         onClick = {
                             viewModel.add(title, description)
@@ -60,7 +62,7 @@ fun NewItemScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Save"
+                            contentDescription = "Create"
                         )
                     }
                 }
