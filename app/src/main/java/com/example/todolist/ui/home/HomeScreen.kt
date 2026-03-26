@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,7 +34,8 @@ import com.example.todolist.ui.components.TodoItemView
 fun HomeScreen(
     viewModel: HomeViewModel,
     onAddClick: () -> Unit,
-    onEditClick: (Int) -> Unit
+    onEditClick: (Int) -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     val items by viewModel.items.collectAsState(initial = emptyList())
 
@@ -44,8 +46,21 @@ fun HomeScreen(
             TopAppBar(
                 title = { Text("Todo List") },
                 actions = {
+
+                    // settings
+                    IconButton(onClick = onSettingsClick) {
+                        Icon(
+                            imageVector = Icons.Default.Settings,
+                            contentDescription = "Settings"
+                        )
+                    }
+
+                    // new task
                     IconButton(onClick = onAddClick) {
-                        Icon(Icons.Default.Add, null)
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "Add new task"
+                        )
                     }
                 }
             )
