@@ -17,6 +17,9 @@ interface TodoDao {
     @Query("SELECT * FROM todo_items WHERE id = :id LIMIT 1")
     suspend fun getById(id: Int): TodoItem?
 
+    @Query("DELETE FROM todo_items")
+    suspend fun deleteAll()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: TodoItem)
 
