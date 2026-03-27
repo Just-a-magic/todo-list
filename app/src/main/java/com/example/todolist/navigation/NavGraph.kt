@@ -16,6 +16,7 @@ import com.example.todolist.ui.home.HomeViewModel
 import com.example.todolist.ui.newitem.NewItemScreen
 import com.example.todolist.ui.newitem.NewItemViewModel
 import com.example.todolist.ui.settings.SettingsScreen
+import com.example.todolist.ui.settings.SettingsViewModel
 
 @Composable
 fun NavGraph(database: AppDatabase) {
@@ -40,7 +41,10 @@ fun NavGraph(database: AppDatabase) {
             )
         }
         composable("settings") {
+            val vm = remember { SettingsViewModel(repository) }
+
             SettingsScreen(
+                viewModel = vm,
                 onBack = {navController.popBackStack()}
             )
         }
