@@ -1,5 +1,6 @@
 package com.example.todolist.ui.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.todolist.data.local.TodoItem
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TodoItemView(
     item: TodoItem,
