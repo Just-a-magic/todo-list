@@ -19,10 +19,8 @@ import com.example.todolist.ui.settings.SettingsScreen
 import com.example.todolist.ui.settings.SettingsViewModel
 
 @Composable
-fun NavGraph(database: AppDatabase) {
+fun NavGraph(repository: TodoRepository) {
     val navController = rememberNavController()
-
-    val repository = remember { TodoRepository(database.todoDao()) }
 
     NavHost(navController, startDestination = "home") {
 
