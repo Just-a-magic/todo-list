@@ -10,17 +10,21 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.todolist.AppTheme
+import com.example.todolist.ui.components.ThemeItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,12 +34,15 @@ fun SettingsScreen(
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
+    var showThemeSheet by remember { mutableStateOf(false) }
+    val currentTheme by viewModel.theme.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(text = "Settings") },
 
-                // back
+                // back icon
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(
@@ -53,6 +60,15 @@ fun SettingsScreen(
                 .padding(padding)
                 .padding(16.dp)
         ) {
+            // theme button
+            Button(
+                onClick = { showThemeSheet = true },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Theme: $currentTheme")
+            }
+
+            // delete all tasks button
             Button(
                 onClick = { showDialog = true },
                 modifier = Modifier.fillMaxWidth()
