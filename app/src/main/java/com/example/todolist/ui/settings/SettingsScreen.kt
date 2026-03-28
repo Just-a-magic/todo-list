@@ -77,6 +77,32 @@ fun SettingsScreen(
             }
         }
 
+        // theme bottom sheet
+        if (showThemeSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { showThemeSheet = false }
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+
+                    ThemeItem("Light") {
+                        viewModel.setTheme(AppTheme.LIGHT)
+                        showThemeSheet = false
+                    }
+
+                    ThemeItem("Dark") {
+                        viewModel.setTheme(AppTheme.DARK)
+                        showThemeSheet = false
+                    }
+
+                    ThemeItem("System") {
+                        viewModel.setTheme(AppTheme.LIGHT)
+                        showThemeSheet = false
+                    }
+                }
+            }
+        }
+
+        // delete all tasks dialog
         if (showDialog) {
             AlertDialog(
                 onDismissRequest = { showDialog = false },
