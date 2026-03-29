@@ -1,14 +1,10 @@
 package com.example.todolist.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.navigation.NavType
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.example.todolist.data.local.AppDatabase
-import com.example.todolist.data.repository.TodoRepository
 import com.example.todolist.ui.edititem.EditItemScreen
 import com.example.todolist.ui.edititem.EditItemViewModel
 import com.example.todolist.ui.home.HomeScreen
@@ -19,13 +15,13 @@ import com.example.todolist.ui.settings.SettingsScreen
 import com.example.todolist.ui.settings.SettingsViewModel
 
 @Composable
-fun NavGraph(repository: TodoRepository) {
+fun NavGraph() {
     val navController = rememberNavController()
 
     NavHost(navController, startDestination = "home") {
 
         composable("home") {
-            val vm = remember { HomeViewModel(repository) }
+            val vm: HomeViewModel = hiltViewModel()
 
             HomeScreen(
                 viewModel = vm,
@@ -39,7 +35,7 @@ fun NavGraph(repository: TodoRepository) {
             )
         }
         composable("settings") {
-            val vm = remember { SettingsViewModel(repository) }
+            val vm: SettingsViewModel = hiltViewModel()
 
             SettingsScreen(
                 viewModel = vm,
@@ -48,7 +44,7 @@ fun NavGraph(repository: TodoRepository) {
         }
 
         composable("new") {
-            val vm = remember { NewItemViewModel(repository) }
+            val vm: NewItemViewModel = hiltViewModel()
 
             NewItemScreen(
                 viewModel = vm,
@@ -56,13 +52,10 @@ fun NavGraph(repository: TodoRepository) {
             )
         }
 
-        composable(
-            route = "edit/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.IntType })
-        ) { backStackEntry ->
+        composable(route = "edit/{id}") {
 
-            val id = backStackEntry.arguments?.getInt("id") ?: return@composable
-            val vm = remember { EditItemViewModel(repository) }
+            val id = it.arguments?.getString("id")!!.toInt()
+            val vm: EditItemViewModel = hiltViewModel()
 
             EditItemScreen(
                 viewModel = vm,

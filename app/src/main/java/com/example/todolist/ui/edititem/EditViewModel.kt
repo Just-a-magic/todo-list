@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todolist.data.local.TodoItem
 import com.example.todolist.data.repository.TodoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-
-class EditItemViewModel(
+import javax.inject.Inject
+@HiltViewModel
+class EditItemViewModel @Inject constructor(
     private val repository: TodoRepository
 ) : ViewModel() {
 
