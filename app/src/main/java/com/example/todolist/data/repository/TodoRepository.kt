@@ -1,20 +1,22 @@
 package com.example.todolist.data.repository
 
-import com.example.todolist.AppTheme
-import com.example.todolist.data.local.TodoDao
-import com.example.todolist.data.local.TodoItem
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.example.todolist.domain.model.AppTheme
+import com.example.todolist.data.datastore.SettingsDataStore
+import com.example.todolist.data.local.db.TodoDao
+import com.example.todolist.data.local.entity.TodoItem
+import javax.inject.Inject
 
-class TodoRepository(private val dao: TodoDao) {
+class TodoRepository @Inject constructor(
+    private val dao: TodoDao,
+    private val settings: SettingsDataStore
+) {
 
     val items = dao.getAll()
 
-    private val _theme = MutableStateFlow(AppTheme.SYSTEM)
-    val theme: StateFlow<AppTheme> = _theme
+    val theme = settings.themeFlow
 
-    fun setTheme(theme: AppTheme) {
-        _theme.value = theme
+    suspend fun setTheme(theme: AppTheme) {
+        settings.setTheme(theme)
     }
 
     suspend fun insert(item: TodoItem) = dao.insert(item)

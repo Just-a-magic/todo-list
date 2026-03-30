@@ -1,4 +1,4 @@
-package com.example.todolist.data.local
+package com.example.todolist.data.local.db
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.example.todolist.data.local.entity.TodoItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,7 +21,7 @@ interface TodoDao {
     @Query("DELETE FROM todo_items")
     suspend fun deleteAll()
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insert(item: TodoItem)
 
     @Delete

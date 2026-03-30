@@ -1,11 +1,11 @@
-package com.example.todolist.ui.edititem
+package com.example.todolist.ui.screens.edititem
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.data.local.TodoItem
+import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.data.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

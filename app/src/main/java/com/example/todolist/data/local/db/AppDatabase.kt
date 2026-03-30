@@ -1,9 +1,11 @@
-package com.example.todolist.data.local
+package com.example.todolist.data.local.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.todolist.data.local.db.TodoDao
+import com.example.todolist.data.local.entity.TodoItem
 
 @Database(entities = [TodoItem::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {

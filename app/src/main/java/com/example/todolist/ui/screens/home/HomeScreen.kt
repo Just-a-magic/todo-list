@@ -1,4 +1,4 @@
-package com.example.todolist.ui.home
+package com.example.todolist.ui.screens.home
 
 
 import androidx.compose.foundation.clickable
@@ -26,7 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.todolist.data.local.TodoItem
+import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.ui.components.TodoItemView
 
 @OptIn(ExperimentalMaterial3Api::class)

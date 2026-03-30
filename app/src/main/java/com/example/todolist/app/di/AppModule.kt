@@ -1,9 +1,10 @@
-package com.example.todolist
+package com.example.todolist.app.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.todolist.data.local.AppDatabase
-import com.example.todolist.data.local.TodoDao
+import com.example.todolist.data.datastore.SettingsDataStore
+import com.example.todolist.data.local.db.AppDatabase
+import com.example.todolist.data.local.db.TodoDao
 import com.example.todolist.data.repository.TodoRepository
 import dagger.Module
 import dagger.Provides
@@ -35,7 +36,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository(dao: TodoDao): TodoRepository {
-        return TodoRepository(dao)
+    fun provideRepository(
+        dao: TodoDao,
+        settings: SettingsDataStore
+    ): TodoRepository {
+        return TodoRepository(dao, settings)
     }
 }

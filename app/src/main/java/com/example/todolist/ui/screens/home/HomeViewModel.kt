@@ -1,8 +1,8 @@
-package com.example.todolist.ui.home
+package com.example.todolist.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.data.local.TodoItem
+import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.data.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

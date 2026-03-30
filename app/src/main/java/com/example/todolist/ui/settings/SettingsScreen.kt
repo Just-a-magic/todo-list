@@ -23,7 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.todolist.AppTheme
+import com.example.todolist.domain.model.AppTheme
 import com.example.todolist.ui.components.ThemeItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +35,7 @@ fun SettingsScreen(
     var showDialog by remember { mutableStateOf(false) }
 
     var showThemeSheet by remember { mutableStateOf(false) }
-    val currentTheme by viewModel.theme.collectAsState()
+    val currentTheme by viewModel.theme.collectAsState(initial = AppTheme.SYSTEM)
 
     Scaffold(
         topBar = {

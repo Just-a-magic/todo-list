@@ -2,7 +2,7 @@ package com.example.todolist.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.todolist.AppTheme
+import com.example.todolist.domain.model.AppTheme
 import com.example.todolist.data.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +16,9 @@ class SettingsViewModel @Inject constructor(
     val theme = repository.theme
 
     fun setTheme(theme: AppTheme) {
-        repository.setTheme(theme)
+        viewModelScope.launch {
+            repository.setTheme(theme)
+        }
     }
 
     fun deleteAll() {
