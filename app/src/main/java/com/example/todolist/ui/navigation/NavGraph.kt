@@ -11,8 +11,8 @@ import com.example.todolist.ui.screens.home.HomeScreen
 import com.example.todolist.ui.screens.home.HomeViewModel
 import com.example.todolist.ui.screens.newitem.NewItemScreen
 import com.example.todolist.ui.screens.newitem.NewItemViewModel
-import com.example.todolist.ui.settings.SettingsScreen
-import com.example.todolist.ui.settings.SettingsViewModel
+import com.example.todolist.ui.screens.settings.SettingsScreen
+import com.example.todolist.ui.screens.settings.SettingsViewModel
 
 @Composable
 fun NavGraph() {

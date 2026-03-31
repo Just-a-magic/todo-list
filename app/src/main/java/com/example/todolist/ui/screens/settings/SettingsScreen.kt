@@ -1,9 +1,13 @@
-package com.example.todolist.ui.settings
+package com.example.todolist.ui.screens.settings
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -21,9 +25,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.todolist.domain.model.AppTheme
+import com.example.todolist.domain.model.toDisplayName
 import com.example.todolist.ui.components.ThemeItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +39,6 @@ fun SettingsScreen(
     onBack: () -> Unit
 ) {
     var showDialog by remember { mutableStateOf(false) }
-
     var showThemeSheet by remember { mutableStateOf(false) }
     val currentTheme by viewModel.theme.collectAsState(initial = AppTheme.SYSTEM)
 
@@ -60,12 +65,24 @@ fun SettingsScreen(
                 .padding(padding)
                 .padding(16.dp)
         ) {
-            // theme button
-            Button(
-                onClick = { showThemeSheet = true },
-                modifier = Modifier.fillMaxWidth()
+
+            // choose theme button
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { showThemeSheet = true }
+                    .padding(horizontal = 16.dp, vertical = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "Theme: $currentTheme")
+                Column {
+                    Text(text = "App theme")
+                    Text(text = currentTheme.toDisplayName())
+                }
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = "Choose theme"
+                )
             }
 
             // delete all tasks button

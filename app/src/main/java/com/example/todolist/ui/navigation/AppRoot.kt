@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.todolist.domain.model.AppTheme
-import com.example.todolist.ui.settings.SettingsViewModel
+import com.example.todolist.ui.screens.settings.SettingsViewModel
 
 @Composable
 fun AppRoot(

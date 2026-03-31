@@ -1,4 +1,4 @@
-package com.example.todolist.ui.settings
+package com.example.todolist.ui.screens.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
