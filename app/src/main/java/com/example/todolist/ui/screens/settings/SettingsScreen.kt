@@ -112,7 +112,7 @@ fun SettingsScreen(
                     }
 
                     ThemeItem("System") {
-                        viewModel.setTheme(AppTheme.LIGHT)
+                        viewModel.setTheme(AppTheme.SYSTEM)
                         showThemeSheet = false
                     }
                 }
