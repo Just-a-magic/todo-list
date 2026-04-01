@@ -66,7 +66,26 @@ fun SettingsScreen(
                 .padding(16.dp)
         ) {
 
-            // choose theme button
+            // choose app language button
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {  }
+                    .padding(horizontal = 16.dp, vertical = 20.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text(text = "App language")
+                    Text(text = " ")
+                }
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = "Choose app language"
+                )
+            }
+
+            // choose app theme button
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -81,7 +100,7 @@ fun SettingsScreen(
                 }
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                    contentDescription = "Choose theme"
+                    contentDescription = "Choose app theme"
                 )
             }
 
