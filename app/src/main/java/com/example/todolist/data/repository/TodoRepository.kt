@@ -4,6 +4,7 @@ import com.example.todolist.domain.model.AppTheme
 import com.example.todolist.data.datastore.SettingsDataStore
 import com.example.todolist.data.local.db.TodoDao
 import com.example.todolist.data.local.entity.TodoItem
+import com.example.todolist.domain.model.AppLanguage
 import javax.inject.Inject
 
 class TodoRepository @Inject constructor(
@@ -14,6 +15,12 @@ class TodoRepository @Inject constructor(
     val items = dao.getAll()
 
     val theme = settings.themeFlow
+
+    val language = settings.languageFlow
+
+    suspend fun setLanguage(lang: AppLanguage) {
+        settings.setLanguage(lang)
+    }
 
     suspend fun setTheme(theme: AppTheme) {
         settings.setTheme(theme)
