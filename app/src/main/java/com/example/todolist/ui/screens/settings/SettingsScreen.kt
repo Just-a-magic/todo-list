@@ -27,10 +27,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.todolist.R
+import com.example.todolist.domain.model.AppLanguage
 import com.example.todolist.domain.model.AppTheme
 import com.example.todolist.domain.model.toDisplayName
+import com.example.todolist.ui.components.LanguageBottomSheet
 import com.example.todolist.ui.components.ThemeItem
+import com.example.todolist.ui.utils.applyLanguage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +45,10 @@ fun SettingsScreen(
 ) {
     var showDialog by remember { mutableStateOf(false) }
     var showThemeSheet by remember { mutableStateOf(false) }
+    var showLangSheet by remember { mutableStateOf(false) }
     val currentTheme by viewModel.theme.collectAsState(initial = AppTheme.SYSTEM)
+
+    val language by viewModel.language.collectAsState(initial = AppLanguage.ENGLISH)
 
     Scaffold(
         topBar = {
@@ -70,14 +78,14 @@ fun SettingsScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable {  }
+                    .clickable { showLangSheet = true }
                     .padding(horizontal = 16.dp, vertical = 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
-                    Text(text = "App language")
-                    Text(text = " ")
+                    Text(stringResource(R.string.language))
+                    Text(text = stringResource(language.toDisplayName()))
                 }
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
@@ -111,6 +119,19 @@ fun SettingsScreen(
             ) {
                 Text(text = "Delete all tasks")
             }
+        }
+
+        // language bottom sheet
+        if (showLangSheet) {
+            LanguageBottomSheet(
+                current = language,
+                onSelect = {
+                    viewModel.setLanguage(it)
+                    applyLanguage(it)
+                    showLangSheet = false
+                },
+                onDismiss = { showLangSheet = false }
+            )
         }
 
         // theme bottom sheet
