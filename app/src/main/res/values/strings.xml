@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">TodoList</string>
+    <string name="app_name" translatable="false">TodoList</string>
+
+    <string name="lang_en" translatable="false">English</string>
+    <string name="lang_ru" translatable="false">Русский</string>
+
+    <string name="language">Language</string>
 </resources>
