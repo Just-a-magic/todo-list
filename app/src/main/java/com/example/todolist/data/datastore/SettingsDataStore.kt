@@ -2,6 +2,7 @@ package com.example.todolist.data.datastore
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
+import com.example.todolist.domain.model.AppLanguage
 import com.example.todolist.domain.model.AppTheme
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -20,10 +21,23 @@ class SettingsDataStore @Inject constructor(
             else -> AppTheme.SYSTEM
         }
     }
+    val languageFlow: Flow<AppLanguage> = context.dataStore.data
+        .map { prefs ->
+            when (prefs[PreferencesKeys.LANGUAGE]) {
+                "ENGLISH" -> AppLanguage.ENGLISH
+                "RUSSIAN" -> AppLanguage.RUSSIAN
+                else -> AppLanguage.ENGLISH
+            }
+        }
 
     suspend fun setTheme(theme: AppTheme) {
         context.dataStore.edit { prefs ->
             prefs[PreferencesKeys.THEME] = theme.name
+        }
+    }
+    suspend fun setLanguage(lang: AppLanguage) {
+        context.dataStore.edit { prefs ->
+            prefs[PreferencesKeys.LANGUAGE] = lang.name
         }
     }
 }
