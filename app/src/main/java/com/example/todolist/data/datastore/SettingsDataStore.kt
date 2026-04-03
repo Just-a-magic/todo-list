@@ -24,9 +24,9 @@ class SettingsDataStore @Inject constructor(
     val languageFlow: Flow<AppLanguage> = context.dataStore.data
         .map { prefs ->
             when (prefs[PreferencesKeys.LANGUAGE]) {
-                "SYSTEM" -> AppLanguage.SYSTEM
                 "ENGLISH" -> AppLanguage.ENGLISH
                 "RUSSIAN" -> AppLanguage.RUSSIAN
+                "SYSTEM" -> AppLanguage.SYSTEM
                 else -> AppLanguage.SYSTEM
             }
         }
