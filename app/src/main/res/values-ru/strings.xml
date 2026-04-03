@@ -1,3 +1,4 @@
 <resources>
     <string name="language">Язык</string>
+    <string name="lang_system">Системный</string>
 </resources>
