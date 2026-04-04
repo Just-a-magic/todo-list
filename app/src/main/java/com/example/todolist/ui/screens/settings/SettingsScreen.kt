@@ -13,7 +13,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,7 +32,7 @@ import com.example.todolist.domain.model.AppLanguage
 import com.example.todolist.domain.model.AppTheme
 import com.example.todolist.domain.model.toDisplayName
 import com.example.todolist.ui.components.LanguageBottomSheet
-import com.example.todolist.ui.components.ThemeItem
+import com.example.todolist.ui.components.ThemeBottomSheet
 import com.example.todolist.ui.utils.applyLanguage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -145,29 +144,14 @@ fun SettingsScreen(
 
         // theme bottom sheet
         if (showThemeSheet) {
-            ModalBottomSheet(
-                onDismissRequest = { showThemeSheet = false }
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-
-                    ThemeItem("Light") {
-                        viewModel.setTheme(AppTheme.LIGHT)
-                        showThemeSheet = false
-                    }
-
-                    ThemeItem("Dark") {
-                        viewModel.setTheme(AppTheme.DARK)
-                        showThemeSheet = false
-                    }
-
-                    ThemeItem("System") {
-                        viewModel.setTheme(AppTheme.SYSTEM)
-                        showThemeSheet = false
-                    }
-                }
-            }
+            ThemeBottomSheet(
+                onSelect = {
+                    viewModel.setTheme(it)
+                    showThemeSheet = false
+                },
+                onDismiss = { showThemeSheet = false }
+            )
         }
-
         // delete all tasks dialog
         if (showDialog) {
             AlertDialog(
