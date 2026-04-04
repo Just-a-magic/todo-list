@@ -2,5 +2,9 @@
     <string name="language">Язык</string>
     <string name="edit">Редактировать</string>
     <string name="lang_system">Системный</string>
+    # theme
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_system">Системная</string>
     <string name="del">Удалить</string>
 </resources>
