@@ -1,5 +1,4 @@
 <resources>
-    <string name="language">Язык</string>
 
     # home screen
     <string name="todo">Список задач</string>
@@ -11,14 +10,23 @@
     # edit item screen
     <string name="edit_task">Редактировать задачу</string>
 
+    # settings screen
+    <string name="settings">Настройки</string>
+    <string name="app_language">Язык приложения</string>
     <string name="lang_system">Системный</string>
+    <string name="app_theme">Тема приложения</string>
+    <string name="delete_all_tasks">Удалить все задачи</string>
 
     # theme
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Темная</string>
     <string name="theme_system">Системная</string>
 
+    #dialog
+    <string name="confirm">Подтверждение</string>
+    <string name="del_all">Удалить все задачи?</string>
     <string name="del">Удалить</string>
+    <string name="cancel">Отмена</string>
 
     # text field
     <string name="title">Название</string>

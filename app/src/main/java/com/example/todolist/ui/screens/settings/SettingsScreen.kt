@@ -52,7 +52,7 @@ fun SettingsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Settings") },
+                title = { Text(text = stringResource(R.string.settings)) },
 
                 // back icon
                 navigationIcon = {
@@ -83,7 +83,7 @@ fun SettingsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
-                    Text(stringResource(R.string.language))
+                    Text(stringResource(R.string.app_language))
                     Text(text = stringResource(language.toDisplayName()))
                 }
                 Icon(
@@ -102,7 +102,7 @@ fun SettingsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column {
-                    Text(text = "App theme")
+                    Text(text = stringResource(R.string.app_theme))
                     Text(text = currentTheme.toDisplayName())
                 }
                 Icon(
@@ -172,8 +172,8 @@ fun SettingsScreen(
         if (showDialog) {
             AlertDialog(
                 onDismissRequest = { showDialog = false },
-                title = { Text(text = "Confirm") },
-                text = { Text(text = "Delete all tasks?") },
+                title = { Text(text = stringResource(R.string.confirm)) },
+                text = { Text(text = stringResource(R.string.del_all)) },
                 confirmButton = {
                     TextButton(
                         onClick = {
@@ -181,14 +181,14 @@ fun SettingsScreen(
                             showDialog = false
                         }
                     ) {
-                        Text(text = "Delete")
+                        Text(text = stringResource(R.string.del))
                     }
                 },
                 dismissButton = {
                     TextButton(
                         onClick = { showDialog = false }
                     ) {
-                        Text(text = "Cancel")
+                        Text(text = stringResource(R.string.cancel))
                     }
                 }
             )

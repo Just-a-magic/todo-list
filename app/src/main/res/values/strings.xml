@@ -11,17 +11,25 @@
     # edit item screen
     <string name="edit_task">Edit task</string>
 
+    # settings screen
+    <string name="settings">Settings</string>
+    <string name="app_language">App language</string>
     <string name="lang_system">System</string>
     <string name="lang_en" translatable="false">English</string>
     <string name="lang_ru" translatable="false">Русский</string>
+    <string name="app_theme">App theme</string>
+    <string name="delete_all_tasks">Delete all tasks</string>
 
-    <string name="language">Language</string>
     #theme
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system">System</string>
 
+    # dialog
+    <string name="confirm">Confirm</string>
+    <string name="del_all">Delete all tasks?</string>
     <string name="del">Delete</string>
+    <string name="cancel">Cancel</string>
 
     # text field
     <string name="title">Title</string>
