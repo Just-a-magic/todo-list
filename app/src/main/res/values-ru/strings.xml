@@ -5,14 +5,19 @@
     <string name="todo">Список задач</string>
     <string name="edit">Редактировать</string>
 
+    # new item screen
+    <string name="new_task">Создать новую задачу</string>
+
     # edit item screen
     <string name="edit_task">Редактировать задачу</string>
 
     <string name="lang_system">Системный</string>
+
     # theme
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Темная</string>
     <string name="theme_system">Системная</string>
+
     <string name="del">Удалить</string>
 
     # text field
