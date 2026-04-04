@@ -145,6 +145,7 @@ fun SettingsScreen(
         // theme bottom sheet
         if (showThemeSheet) {
             ThemeBottomSheet(
+                current = currentTheme,
                 onSelect = {
                     viewModel.setTheme(it)
                     showThemeSheet = false
