@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">TodoList</string>
 
+    # home screen
+    <string name="todo">Todo List</string>
     <string name="edit">Edit</string>
 
     # edit item screen

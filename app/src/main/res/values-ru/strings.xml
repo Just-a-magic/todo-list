@@ -1,5 +1,8 @@
 <resources>
     <string name="language">Язык</string>
+
+    # home screen
+    <string name="todo">Список задач</string>
     <string name="edit">Редактировать</string>
 
     # edit item screen

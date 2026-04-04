@@ -31,7 +31,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.todolist.R
 import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.ui.components.TodoItemView
 
@@ -50,7 +52,7 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Todo List") },
+                title = { Text(stringResource(R.string.todo)) },
                 actions = {
 
                     // settings
