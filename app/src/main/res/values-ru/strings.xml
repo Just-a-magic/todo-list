@@ -1,10 +1,18 @@
 <resources>
     <string name="language">Язык</string>
     <string name="edit">Редактировать</string>
+
+    # edit item screen
+    <string name="edit_task">Редактировать задачу</string>
+
     <string name="lang_system">Системный</string>
     # theme
     <string name="theme_light">Светлая</string>
     <string name="theme_dark">Темная</string>
     <string name="theme_system">Системная</string>
     <string name="del">Удалить</string>
+
+    # text field
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
 </resources>

@@ -23,8 +23,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import com.example.todolist.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,10 +54,10 @@ fun EditItemScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Edit Task") },
+                title = { Text(stringResource(R.string.edit_task)) },
 
                 navigationIcon = {
-                    // back
+                    // back icon
                     IconButton(onClick = onBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -65,7 +67,7 @@ fun EditItemScreen(
                 },
 
                 actions = {
-                    // save
+                    // save icon
                     IconButton(onClick = {
                         viewModel.update(title, description)
                         onBack()
@@ -89,7 +91,7 @@ fun EditItemScreen(
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
-                label = { Text("Title") },
+                label = { Text(stringResource(R.string.title)) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
@@ -100,7 +102,7 @@ fun EditItemScreen(
             OutlinedTextField(
                 value = description,
                 onValueChange = { description = it },
-                label = { Text("Description") },
+                label = { Text(stringResource(R.string.description)) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default)

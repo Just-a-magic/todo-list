@@ -2,6 +2,10 @@
     <string name="app_name" translatable="false">TodoList</string>
 
     <string name="edit">Edit</string>
+
+    # edit item screen
+    <string name="edit_task">Edit task</string>
+
     <string name="lang_system">System</string>
     <string name="lang_en" translatable="false">English</string>
     <string name="lang_ru" translatable="false">Русский</string>
@@ -12,4 +16,8 @@
     <string name="theme_dark">Dark</string>
     <string name="theme_system">System</string>
     <string name="del">Delete</string>
+
+    # text field
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
