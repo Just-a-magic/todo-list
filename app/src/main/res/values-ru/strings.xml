@@ -3,6 +3,7 @@
     # home screen
     <string name="todo">Список задач</string>
     <string name="edit">Редактировать</string>
+    <string name="actions">Действия</string>
 
     # new item screen
     <string name="new_task">Создать новую задачу</string>

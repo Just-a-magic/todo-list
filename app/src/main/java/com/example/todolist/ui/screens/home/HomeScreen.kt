@@ -55,7 +55,7 @@ fun HomeScreen(
                 title = { Text(stringResource(R.string.todo)) },
                 actions = {
 
-                    // settings
+                    // settings icon
                     IconButton(onClick = onSettingsClick) {
                         Icon(
                             imageVector = Icons.Default.Settings,
@@ -63,7 +63,7 @@ fun HomeScreen(
                         )
                     }
 
-                    // new task
+                    // new task icon
                     IconButton(onClick = onAddClick) {
                         Icon(
                             imageVector = Icons.Default.Add,
@@ -77,6 +77,7 @@ fun HomeScreen(
 
         Box(modifier = Modifier.padding(padding)) {
 
+            // items
             LazyColumn {
                 items(items) { item ->
                     TodoItemView(
@@ -95,8 +96,24 @@ fun HomeScreen(
                 ) {
                     Column {
 
-                        Text(
-                            text = "Edit",
+                        // sheet title
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            IconButton(
+                                onClick = { selectedItem = null },
+                                modifier = Modifier.padding(horizontal = 8.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Clear,
+                                    contentDescription = "Back"
+                                )
+                            }
+                            Text(text = stringResource(R.string.actions))
+                        }
+
                         // edit button
                         Row(
                             modifier = Modifier
