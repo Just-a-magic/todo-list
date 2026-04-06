@@ -36,6 +36,8 @@ fun NewItemScreen(
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
 
+    var isSaving by remember { mutableStateOf(false) }
+
     val titleIsValid = title.isNotBlank()
 
     Scaffold(
@@ -57,10 +59,11 @@ fun NewItemScreen(
                     // create icon
                     IconButton(
                         onClick = {
+                            isSaving = true
                             viewModel.add(title, description)
                             onBack()
                         },
-                        enabled = titleIsValid
+                        enabled = titleIsValid && !isSaving
                     ) {
                         Icon(
                             imageVector = Icons.Default.Check,
@@ -72,10 +75,12 @@ fun NewItemScreen(
         }
     ) { padding ->
 
-        Column(modifier = Modifier
+        Column(
+            modifier = Modifier
             .padding(padding)
-            .padding(16.dp)) {
-
+            .padding(16.dp)
+        ) {
+            // title text field
             OutlinedTextField(
                 value = title,
                 onValueChange = { title = it },
@@ -87,6 +92,7 @@ fun NewItemScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
+            // description text field
             OutlinedTextField(
                 value = description,
                 onValueChange = { description = it },
