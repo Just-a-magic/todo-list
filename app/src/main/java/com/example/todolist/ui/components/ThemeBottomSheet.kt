@@ -26,12 +26,12 @@ import com.example.todolist.domain.model.toDisplayName
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ThemeBottomSheet(
-    current: AppTheme,
-    onSelect: (AppTheme) -> Unit,
-    onDismiss: () -> Unit
+    onDismissRequest: () -> Unit,
+    onSelectClick: (AppTheme) -> Unit,
+    currentTheme: AppTheme
 ) {
     ModalBottomSheet(
-        onDismissRequest = onDismiss
+        onDismissRequest = onDismissRequest
     ) {
         Column {
 
@@ -42,7 +42,7 @@ fun ThemeBottomSheet(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    onClick = onDismiss,
+                    onClick = onDismissRequest,
                     modifier = Modifier.padding(horizontal = 8.dp)
                 ) {
                     Icon(
@@ -59,14 +59,17 @@ fun ThemeBottomSheet(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { onSelect(theme) }
+                        .clickable {
+                            onDismissRequest()
+                            onSelectClick(theme)
+                        }
                         .padding(24.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
 
                     Text(theme.toDisplayName())
 
-                    if (theme == current) {
+                    if (theme == currentTheme) {
                         Icon(
                             imageVector = Icons.Default.Check,
                             contentDescription = "Selected"

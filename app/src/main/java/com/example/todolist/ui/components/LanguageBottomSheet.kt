@@ -26,12 +26,11 @@ import com.example.todolist.domain.model.toDisplayName
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LanguageBottomSheet(
-    current: AppLanguage,
-    onSelect: (AppLanguage) -> Unit,
-    onDismiss: () -> Unit
+    onDismissRequest: () -> Unit,
+    onSelectClick: (AppLanguage) -> Unit,
+    currentLanguage: AppLanguage
 ) {
-    ModalBottomSheet(onDismissRequest = onDismiss) {
-
+    ModalBottomSheet(onDismissRequest = onDismissRequest) {
         Column {
 
             // sheet title
@@ -41,7 +40,7 @@ fun LanguageBottomSheet(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(
-                    onClick = onDismiss,
+                    onClick = onDismissRequest,
                     modifier = Modifier.padding(horizontal = 8.dp)
                 ) {
                     Icon(
@@ -58,13 +57,16 @@ fun LanguageBottomSheet(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { onSelect(lang) }
+                        .clickable {
+                            onDismissRequest()
+                            onSelectClick(lang)
+                        }
                         .padding(24.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(stringResource(lang.toDisplayName()))
 
-                    if (lang == current) {
+                    if (lang == currentLanguage) {
                         Icon(
                             imageVector = Icons.Default.Check,
                             contentDescription = "Selected"

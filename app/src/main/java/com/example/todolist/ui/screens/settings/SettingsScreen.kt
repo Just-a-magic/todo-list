@@ -44,9 +44,9 @@ fun SettingsScreen(
     var showDialog by remember { mutableStateOf(false) }
     var showThemeSheet by remember { mutableStateOf(false) }
     var showLangSheet by remember { mutableStateOf(false) }
-    val currentTheme by viewModel.theme.collectAsState(initial = AppTheme.SYSTEM)
 
-    val language by viewModel.language.collectAsState(initial = AppLanguage.ENGLISH)
+    val currentTheme by viewModel.theme.collectAsState(initial = AppTheme.SYSTEM)
+    val currentLanguage by viewModel.language.collectAsState(initial = AppLanguage.ENGLISH)
 
     Scaffold(
         topBar = {
@@ -83,7 +83,7 @@ fun SettingsScreen(
             ) {
                 Column {
                     Text(stringResource(R.string.app_language))
-                    Text(text = stringResource(language.toDisplayName()))
+                    Text(text = stringResource(currentLanguage.toDisplayName()))
                 }
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
@@ -132,25 +132,21 @@ fun SettingsScreen(
         // language bottom sheet
         if (showLangSheet) {
             LanguageBottomSheet(
-                current = language,
-                onSelect = {
+                onDismissRequest = { showLangSheet = false },
+                onSelectClick = {
                     viewModel.setLanguage(it)
                     applyLanguage(it)
-                    showLangSheet = false
                 },
-                onDismiss = { showLangSheet = false }
+                currentLanguage = currentLanguage
             )
         }
 
         // theme bottom sheet
         if (showThemeSheet) {
             ThemeBottomSheet(
-                current = currentTheme,
-                onSelect = {
-                    viewModel.setTheme(it)
-                    showThemeSheet = false
-                },
-                onDismiss = { showThemeSheet = false }
+                onDismissRequest = { showThemeSheet = false },
+                onSelectClick = { viewModel.setTheme(it) },
+                currentTheme = currentTheme
             )
         }
         // delete all tasks dialog
@@ -162,8 +158,8 @@ fun SettingsScreen(
                 confirmButton = {
                     TextButton(
                         onClick = {
-                            viewModel.deleteAll()
                             showDialog = false
+                            viewModel.deleteAll()
                         }
                     ) {
                         Text(text = stringResource(R.string.del))
