@@ -40,6 +40,8 @@ fun EditItemScreen(
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
 
+    var isSaving by remember { mutableStateOf(false) }
+
     LaunchedEffect(Unit) {
         viewModel.load(itemId)
     }
@@ -68,10 +70,14 @@ fun EditItemScreen(
 
                 actions = {
                     // save icon
-                    IconButton(onClick = {
-                        viewModel.update(title, description)
-                        onBack()
-                    }) {
+                    IconButton(
+                        onClick = {
+                            isSaving = true
+                            viewModel.update(title, description)
+                            onBack()
+                        },
+                        enabled = !isSaving
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Check,
                             contentDescription = "Save"
