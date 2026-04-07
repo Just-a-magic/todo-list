@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.todolist.R
 import com.example.todolist.domain.model.AppTheme
 import com.example.todolist.domain.model.toDisplayName
+import com.example.todolist.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,7 +33,9 @@ fun ThemeBottomSheet(
     currentTheme: AppTheme
 ) {
     ModalBottomSheet(
-        onDismissRequest = onDismissRequest
+        onDismissRequest = onDismissRequest,
+        containerColor = MaterialTheme.colorScheme.surface,
+        tonalElevation = 0.dp
     ) {
         Column {
 
@@ -50,7 +54,10 @@ fun ThemeBottomSheet(
                         contentDescription = "Back"
                     )
                 }
-                Text(text = stringResource(R.string.app_theme))
+                Text(
+                    text = stringResource(R.string.theme),
+                    style = Typography.titleLarge
+                )
             }
 
             AppTheme.entries.forEach { theme ->
@@ -66,8 +73,10 @@ fun ThemeBottomSheet(
                         .padding(24.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-
-                    Text(theme.toDisplayName())
+                    Text(
+                        theme.toDisplayName(),
+                        style = Typography.labelLarge
+                    )
 
                     if (theme == currentTheme) {
                         Icon(
