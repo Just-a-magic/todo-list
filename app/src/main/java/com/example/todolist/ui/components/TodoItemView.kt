@@ -6,18 +6,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.todolist.data.local.entity.TodoItem
+import com.example.todolist.ui.theme.Shapes
+import com.example.todolist.ui.theme.Typography
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -27,37 +28,56 @@ fun TodoItemView(
     onLongClick: () -> Unit,
     onToggle: () -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .combinedClickable(
-                onClick = onClick,
-                onLongClick = onLongClick
-            )
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    val cardColor = if (item.isDone) {
+        MaterialTheme.colorScheme.surfaceVariant
+    } else {
+        MaterialTheme.colorScheme.surface
+    }
 
-        Checkbox(
-            checked = item.isDone,
-            onCheckedChange = { onToggle() }
+    Card(
+        shape = Shapes.medium,
+        colors = CardDefaults.cardColors(
+            containerColor = cardColor
         )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .combinedClickable(
+                    onClick = onClick,
+                    onLongClick = onLongClick
+                )
+                .padding(start = 16.dp, end = 8.dp),
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(top = 12.dp, bottom = 12.dp)
+                    .weight(1f)
+            ) {
+                val textColor = if (item.isDone) {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                } else {
+                    MaterialTheme.colorScheme.onSurface
+                }
 
-        Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = item.title,
+                    color = textColor,
+                    style = Typography.bodyLarge
+                )
 
-        Column {
-            val textDecoration = if (item.isDone) TextDecoration.LineThrough else TextDecoration.None
-            val textColor = if (item.isDone) Color.Gray else Color.Unspecified
-
-            Text(
-                text = item.title,
-                style = TextStyle(textDecoration = textDecoration),
-                color = textColor
-            )
-            Text(
-                text = item.description,
-                style = TextStyle(textDecoration = textDecoration),
-                color = textColor
+                if (item.description.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = item.description,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = Typography.bodySmall
+                    )
+                }
+            }
+            Checkbox(
+                checked = item.isDone,
+                onCheckedChange = { onToggle() }
             )
         }
     }
