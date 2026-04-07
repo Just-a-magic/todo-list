@@ -7,18 +7,18 @@
     <string name="actions">Actions</string>
 
     # new item screen
-    <string name="new_task">Create new task</string>
+    <string name="new_task">Add new task</string>
 
     # edit item screen
     <string name="edit_task">Edit task</string>
 
     # settings screen
     <string name="settings">Settings</string>
-    <string name="app_language">App language</string>
+    <string name="language">Language</string>
     <string name="lang_system">System</string>
     <string name="lang_en" translatable="false">English</string>
     <string name="lang_ru" translatable="false">Русский</string>
-    <string name="app_theme">App theme</string>
+    <string name="theme">Theme</string>
     <string name="delete_all_tasks">Delete all tasks</string>
 
     #theme
@@ -32,7 +32,14 @@
     <string name="del">Delete</string>
     <string name="cancel">Cancel</string>
 
-    # text field
+    # text fields
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="add_title">Add title</string>
+    <string name="add_description">Add description, if needed</string>
+    <string name="edit_title">Edit title</string>
+    <string name="edit_description">Edit description</string>
+
+    # button
+    <string name="done">Done</string>
 </resources>

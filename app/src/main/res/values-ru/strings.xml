@@ -2,20 +2,20 @@
 
     # home screen
     <string name="todo">Список задач</string>
-    <string name="edit">Редактировать</string>
+    <string name="edit">Изменить</string>
     <string name="actions">Действия</string>
 
     # new item screen
-    <string name="new_task">Создать новую задачу</string>
+    <string name="new_task">Добавить новую задачу</string>
 
     # edit item screen
-    <string name="edit_task">Редактировать задачу</string>
+    <string name="edit_task">Изменить задачу</string>
 
     # settings screen
     <string name="settings">Настройки</string>
-    <string name="app_language">Язык приложения</string>
+    <string name="language">Язык</string>
     <string name="lang_system">Системный</string>
-    <string name="app_theme">Тема приложения</string>
+    <string name="theme">Тема</string>
     <string name="delete_all_tasks">Удалить все задачи</string>
 
     # theme
@@ -29,7 +29,14 @@
     <string name="del">Удалить</string>
     <string name="cancel">Отмена</string>
 
-    # text field
+    # text fields
     <string name="title">Название</string>
     <string name="description">Описание</string>
+    <string name="add_title">Добавить название</string>
+    <string name="add_description">Добавить описание, если нужно</string>
+    <string name="edit_title">Изменить название</string>
+    <string name="edit_description">Изменить описание</string>
+
+    # button
+    <string name="done">Готово</string>
 </resources>
