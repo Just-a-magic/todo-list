@@ -6,7 +6,7 @@
     <string name="actions">Действия</string>
 
     # new item screen
-    <string name="new_task">Добавить новую задачу</string>
+    <string name="new_task">Добавить задачу</string>
 
     # edit item screen
     <string name="edit_task">Изменить задачу</string>
