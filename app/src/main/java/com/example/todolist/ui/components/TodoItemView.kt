@@ -2,6 +2,7 @@ package com.example.todolist.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -51,8 +52,9 @@ fun TodoItemView(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(top = 12.dp, bottom = 12.dp)
-                    .weight(1f)
+                    .padding(top = 14.dp, bottom = 12.dp)
+                    .weight(1f),
+                verticalArrangement = Arrangement.Center
             ) {
                 val textColor = if (item.isDone) {
                     MaterialTheme.colorScheme.onSurfaceVariant
