@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -64,8 +65,11 @@ fun EditItemScreen(
             CenterAlignedTopAppBar(
                 title = { Text(
                     stringResource(R.string.edit_task),
-                    style = Typography.titleLarge
+                    style = Typography.titleLarge,
                 ) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    MaterialTheme.colorScheme.background
+                ),
 
                 navigationIcon = {
                     // back icon
