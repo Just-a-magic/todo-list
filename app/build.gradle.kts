@@ -74,6 +74,7 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.junit.ktx)
     ksp(libs.hilt.compiler)
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
@@ -86,4 +87,5 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.datastore:datastore-preferences:1.2.1")
     implementation(libs.google.material)
+    testImplementation(kotlin("test"))
 }
