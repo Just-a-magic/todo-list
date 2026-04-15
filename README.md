@@ -2,6 +2,23 @@
 
 Простое приложение со списком задач
 
+## Возможности
+- Создание задач
+- Изменение статуса выполнения
+- Редактирование задач
+- Удаление задач
+- Очистка всех задач
+- Выбор языка
+- Выбор темы
+
+## Technology Stack
+- Kotlin
+- Jetpack Compose, Material 3
+- Hilt
+- Room
+- DataStore
+
+## Скриншоты 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/61322753-1902-4044-a23b-088f846c0bf7" width="32%" />
   <img src="https://github.com/user-attachments/assets/850a788b-5377-44d1-99bc-274b1d0eebc8" width="32%" />
