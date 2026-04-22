@@ -1,5 +1,5 @@
 <resources>
-Chnage     <string name="app_name" translatable="false">Todo List</string>
+    <string name="app_name" translatable="false">Todo List</string>
 
     # home screen
     <string name="todo">Todo List</string>
