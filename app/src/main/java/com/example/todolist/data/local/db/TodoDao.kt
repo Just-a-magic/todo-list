@@ -21,7 +21,7 @@ interface TodoDao {
     @Query("DELETE FROM todo_items")
     suspend fun deleteAll()
 
-    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: TodoItem)
 
     @Delete
