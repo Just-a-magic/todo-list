@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TodoDao {
 
-    @Query("SELECT * FROM todo_items ORDER BY createdAt DESC")
+    @Query("SELECT * FROM todo_items ORDER BY createdAt ASC")
     fun getAll(): Flow<List<TodoItem>>
 
     @Query("SELECT * FROM todo_items WHERE id = :id LIMIT 1")
