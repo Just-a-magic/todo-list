@@ -9,6 +9,7 @@ import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.data.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 // эта ViewModel отвечает за редактирование задачи
@@ -29,14 +30,15 @@ class EditItemViewModel @Inject constructor(
     }
 
     // сохранение отредактированных данных
-    fun update(title: String, description: String) {
+    fun update(title: String, description: String, selectedDate: LocalDate?) {
         val current = item ?: return
 
         viewModelScope.launch {
             repository.update(
                 current.copy(       // обновляет только название и описание задачи
                     title = title,
-                    description = description
+                    description = description,
+                    selectedDate = selectedDate
                 )
             )
         }
