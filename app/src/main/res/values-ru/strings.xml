@@ -32,10 +32,13 @@
     # text fields
     <string name="title">Название</string>
     <string name="description">Описание</string>
+    <string name="date">Дата</string>
     <string name="add_title">Добавить название</string>
     <string name="add_description">Добавить описание, если нужно</string>
+    <string name="add_date">Добавить дату, если нужно</string>
     <string name="edit_title">Изменить название</string>
     <string name="edit_description">Изменить описание</string>
+    <string name="edit_date">Изменить дату</string>
 
     # button
     <string name="done">Готово</string>

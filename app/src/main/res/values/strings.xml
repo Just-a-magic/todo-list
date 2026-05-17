@@ -35,11 +35,15 @@
     # text fields
     <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="date">Date</string>
     <string name="add_title">Add title</string>
     <string name="add_description">Add description, if needed</string>
+    <string name="add_date">Add date, if needed</string>
     <string name="edit_title">Edit title</string>
     <string name="edit_description">Edit description</string>
+    <string name="edit_date">Edit date</string>
 
     # button
     <string name="done">Done</string>
+    <string name="ok" translatable="false">OK</string>
 </resources>
