@@ -1,5 +1,8 @@
 package com.example.todolist.ui.screens.newitem
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,8 +12,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,7 +25,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +40,10 @@ import androidx.compose.ui.unit.dp
 import com.example.todolist.R
 import com.example.todolist.ui.theme.Shapes
 import com.example.todolist.ui.theme.Typography
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,6 +57,11 @@ fun NewItemScreen(
     var isSaving by remember { mutableStateOf(false) }
 
     val titleIsValid = title.isNotBlank()
+
+    var selectedDate by remember { mutableStateOf<LocalDate?>(null) }
+    var showDatePicker by remember { mutableStateOf(false) }
+    val datePickerState = rememberDatePickerState()
+    val formattedDate = selectedDate?.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) ?: ""
 
     Scaffold(
         topBar = {
@@ -72,7 +89,7 @@ fun NewItemScreen(
                     IconButton(
                         onClick = {
                             isSaving = true
-                            viewModel.add(title, description)
+                            viewModel.add(title, description, selectedDate)
                             onBack()
                         },
                         enabled = titleIsValid && !isSaving,
@@ -99,7 +116,7 @@ fun NewItemScreen(
             .padding(padding)
             .padding(16.dp)
         ) {
-            // title text field
+            // title
             Text(
                 text = stringResource(R.string.title),
                 style = Typography.bodyLarge
@@ -120,7 +137,7 @@ fun NewItemScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // description text field
+            // description
             Text(
                 text = stringResource(R.string.description),
                 style = Typography.bodyLarge
@@ -139,13 +156,56 @@ fun NewItemScreen(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default)
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // date
+            Text(
+                text = stringResource(R.string.date),
+                style = Typography.bodyLarge
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Box(modifier = Modifier.fillMaxWidth()) {
+                OutlinedTextField(
+                    value = formattedDate,
+                    onValueChange = {},
+                    readOnly = true,
+                    label = {
+                        Text(
+                            text = stringResource(R.string.add_date),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            style = Typography.bodySmall
+                        )
+                    },
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = "Select date"
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true
+                )
+
+                Box(
+                    modifier = Modifier
+                        .matchParentSize()
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) {
+                            showDatePicker = true
+                        }
+                )
+            }
+
             Spacer(modifier = Modifier.height(32.dp))
 
             // save button
             Button(
                 onClick = {
                     isSaving = true
-                    viewModel.add(title, description)
+                    viewModel.add(title, description, selectedDate)
                     onBack()
                 },
                 modifier = Modifier
@@ -158,6 +218,44 @@ fun NewItemScreen(
                     text = stringResource(R.string.done),
                     style = Typography.labelLarge
                 )
+            }
+
+            // date dialog
+            if (showDatePicker) {
+                DatePickerDialog(
+                    onDismissRequest = { showDatePicker = false },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                val selectedMillis = datePickerState.selectedDateMillis
+                                if (selectedMillis != null) {
+                                    selectedDate = Instant.ofEpochMilli(selectedMillis)
+                                        .atZone(ZoneId.of("UTC"))
+                                        .toLocalDate()
+                                }
+                                showDatePicker = false
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.ok),
+                                style = Typography.labelLarge
+                            )
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(
+                            onClick = { showDatePicker = false }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.cancel),
+                                style = Typography.labelLarge,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                ) {
+                    DatePicker(state = datePickerState)
+                }
             }
         }
     }
