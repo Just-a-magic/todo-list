@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.ui.theme.Shapes
@@ -65,7 +66,12 @@ fun TodoItemView(
                 Text(
                     text = item.title,
                     color = textColor,
-                    style = Typography.bodyLarge
+                    style = Typography.bodyLarge,
+                    textDecoration = if (item.isDone) {
+                        TextDecoration.LineThrough
+                    } else {
+                        TextDecoration.None
+                    }
                 )
 
                 if (item.description.isNotEmpty()) {
@@ -73,7 +79,12 @@ fun TodoItemView(
                     Text(
                         text = item.description,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        style = Typography.bodySmall
+                        style = Typography.bodySmall,
+                        textDecoration = if (item.isDone) {
+                            TextDecoration.LineThrough
+                        } else {
+                            TextDecoration.None
+                        }
                     )
                 }
             }
