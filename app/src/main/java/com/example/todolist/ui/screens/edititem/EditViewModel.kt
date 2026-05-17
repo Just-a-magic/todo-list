@@ -10,6 +10,9 @@ import com.example.todolist.data.repository.TodoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+// эта ViewModel отвечает за редактирование задачи
+
 @HiltViewModel
 class EditItemViewModel @Inject constructor(
     private val repository: TodoRepository
@@ -18,18 +21,20 @@ class EditItemViewModel @Inject constructor(
     var item by mutableStateOf<TodoItem?>(null)
         private set
 
+    // загрузка данных задачи из db при открытии экрана
     fun load(id: Int) {
         viewModelScope.launch {
             item = repository.getById(id)
         }
     }
 
+    // сохранение отредактированных данных
     fun update(title: String, description: String) {
         val current = item ?: return
 
         viewModelScope.launch {
             repository.update(
-                current.copy(
+                current.copy(       // обновляет только название и описание задачи
                     title = title,
                     description = description
                 )

@@ -13,22 +13,21 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// входная точка в приложение
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
     @Inject
-    lateinit var settingsDataStore: SettingsDataStore
+    lateinit var settingsDataStore: SettingsDataStore // настройки приложения, через hilt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         lifecycleScope.launch {
-            val currentLang = settingsDataStore.languageFlow.first()
-            applyLanguage(currentLang)
+            val currentLang = settingsDataStore.languageFlow.first() // запрашивает из настроек выбранный язык
+            applyLanguage(currentLang)      // применяет выбранный язык
         }
-
         enableEdgeToEdge()
-        setContent {
+        setContent {        // устанавливает jetpack compose в качестве интерфейса
             AppRoot()
         }
     }

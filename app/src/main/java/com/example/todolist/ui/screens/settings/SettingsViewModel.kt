@@ -9,27 +9,34 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// эта ViewModel управляет состоянием приложения
+
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val repository: TodoRepository
 ) : ViewModel() {
 
+    // flow темы из репозитория
     val theme = repository.theme
 
+    // flow языка из репозитория
     val language = repository.language
 
+    // изменение языка приложения
     fun setLanguage(lang: AppLanguage) {
         viewModelScope.launch {
             repository.setLanguage(lang)
         }
     }
 
+    // изменение темы приложения
     fun setTheme(theme: AppTheme) {
         viewModelScope.launch {
             repository.setTheme(theme)
         }
     }
 
+    // удаление всех задач
     fun deleteAll() {
         viewModelScope.launch {
             repository.deleteAll()

@@ -13,11 +13,14 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+// этот файл является центром внедрения зависимостей, здесь описывается для hilt,
+// как именно нужно создавать объекты, которые не имеют простого конструктора
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
+    @Provides       // db
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
@@ -25,16 +28,16 @@ object AppModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "todo_db"
+            "todo_db"       // название файла db в памяти устройства
         ).build()
     }
 
-    @Provides
+    @Provides       // dao
     fun provideDao(db: AppDatabase): TodoDao {
         return db.todoDao()
     }
 
-    @Provides
+    @Provides       // repository
     @Singleton
     fun provideRepository(
         dao: TodoDao,

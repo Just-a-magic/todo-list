@@ -14,12 +14,16 @@ import com.example.todolist.ui.screens.newitem.NewItemViewModel
 import com.example.todolist.ui.screens.settings.SettingsScreen
 import com.example.todolist.ui.screens.settings.SettingsViewModel
 
+// этот файл описывает карту навигации приложения, здесь определяются все доступные экраны
+// и правила перехода между ними
+
 @Composable
 fun NavGraph() {
-    val navController = rememberNavController()
+    val navController = rememberNavController()  // отслеживает стек экранов и позволяет переключаться между ними
 
-    NavHost(navController, startDestination = "home") {
+    NavHost(navController, startDestination = "home") {     // отображает текущий экран
 
+        // главный экран
         composable("home") {
             val vm: HomeViewModel = hiltViewModel()
 
@@ -34,6 +38,7 @@ fun NavGraph() {
                 }
             )
         }
+        // экран настроек
         composable("settings") {
             val vm: SettingsViewModel = hiltViewModel()
 
@@ -42,7 +47,7 @@ fun NavGraph() {
                 onBack = {navController.popBackStack()}
             )
         }
-
+        // экран добавления задачи
         composable("new") {
             val vm: NewItemViewModel = hiltViewModel()
 
@@ -51,10 +56,9 @@ fun NavGraph() {
                 onBack = { navController.popBackStack() }
             )
         }
-
+        // экран редактирования задачи
         composable(route = "edit/{id}") {
-
-            val id = it.arguments?.getString("id")!!.toInt()
+            val id = it.arguments?.getString("id")!!.toInt()    // извлекает id из строки маршрут
             val vm: EditItemViewModel = hiltViewModel()
 
             EditItemScreen(

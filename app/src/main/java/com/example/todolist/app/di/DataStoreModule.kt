@@ -9,12 +9,14 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+// этот модуль дополняет внедрение зависимостей, отвечая конкретно за хранилище настроек
+
 @Module
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
 
     @Provides
-    @Singleton
+    @Singleton      // создает экземпляр SettingsDataStore
     fun provideSettingsDataStore(
         @ApplicationContext context: Context
     ): SettingsDataStore {
