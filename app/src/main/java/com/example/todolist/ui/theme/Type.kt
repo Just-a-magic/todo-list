@@ -39,5 +39,13 @@ val Typography = Typography(
         fontSize = 16.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
+    ),
+
+    displaySmall = TextStyle(       // date
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        lineHeight = 14.sp,
+        letterSpacing = 0.5.sp
     )
 )
