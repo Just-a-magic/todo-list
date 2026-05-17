@@ -29,7 +29,9 @@ object AppModule {
             context,
             AppDatabase::class.java,
             "todo_db"       // название файла db в памяти устройства
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides       // dao
