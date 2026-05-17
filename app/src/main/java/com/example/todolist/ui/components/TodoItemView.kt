@@ -1,6 +1,7 @@
 package com.example.todolist.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
@@ -21,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.example.todolist.data.local.entity.TodoItem
 import com.example.todolist.ui.theme.Shapes
 import com.example.todolist.ui.theme.Typography
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -62,18 +65,44 @@ fun TodoItemView(
                 } else {
                     MaterialTheme.colorScheme.onSurface
                 }
+                Row {
+                    //date
+                    item.selectedDate?.let { date ->
+                        val formatter = DateTimeFormatter.ofPattern("dd.MM")
 
-                Text(
-                    text = item.title,
-                    color = textColor,
-                    style = Typography.bodyLarge,
-                    textDecoration = if (item.isDone) {
-                        TextDecoration.LineThrough
-                    } else {
-                        TextDecoration.None
+                        Text(
+                            text = date.format(formatter),
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            style = Typography.displaySmall,
+                            textDecoration = if (item.isDone) {
+                                TextDecoration.LineThrough
+                            } else {
+                                TextDecoration.None
+                            },
+                            modifier = Modifier
+                                .background(
+                                    color = MaterialTheme.colorScheme.primary,
+                                    shape = Shapes.extraLarge
+                                )
+                                .padding(horizontal = 5.dp, vertical = 2.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
                     }
-                )
 
+                    // title
+                    Text(
+                        text = item.title,
+                        color = textColor,
+                        style = Typography.bodyLarge,
+                        textDecoration = if (item.isDone) {
+                            TextDecoration.LineThrough
+                        } else {
+                            TextDecoration.None
+                        }
+                    )
+                }
+
+                // description
                 if (item.description.isNotEmpty()) {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
