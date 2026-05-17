@@ -282,7 +282,8 @@ fun SettingsScreen(
                     ) {
                         Text(
                             text = stringResource(R.string.cancel),
-                            style = Typography.labelLarge
+                            style = Typography.labelLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
