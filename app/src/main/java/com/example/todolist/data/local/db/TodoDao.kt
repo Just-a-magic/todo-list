@@ -16,7 +16,9 @@ import kotlinx.coroutines.flow.Flow
 interface TodoDao {
 
     // выбор всех задач
-    @Query("SELECT * FROM todo_items ORDER BY createdAt ASC")
+    @Query("SELECT * FROM todo_items " +
+            "ORDER BY CASE WHEN selectedDate IS NOT NULL THEN 0 ELSE 1 END," +
+            " selectedDate ASC, createdAt ASC")
     fun getAll(): Flow<List<TodoItem>>
 
     // поиск конкретной задачи по id
